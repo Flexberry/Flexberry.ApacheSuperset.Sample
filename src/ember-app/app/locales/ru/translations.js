@@ -101,7 +101,8 @@ $.extend(true, translations, {
             caption: 'Producing country',
             title: ''
           }
-        }
+        },
+        'add-new-data': 'Добавить тестовые данные'
       }
     },
 
