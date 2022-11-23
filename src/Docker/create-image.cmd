@@ -5,3 +5,5 @@ docker build --no-cache -f Dockerfile -t sampleforsuperset/app ../..
 docker build --no-cache -f Dockerfile.Superset -t sampleforsuperset/superset ..
 
 docker build --no-cache -f Dockerfile.PgAdmin -t sampleforsuperset/pgadmin4 ..
+
+docker build --no-cache -f Audit\Dockerfile -t sampleforsuperset/clickhouse ./Audit

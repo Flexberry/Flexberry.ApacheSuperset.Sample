@@ -163,9 +163,11 @@ export default Controller.extend({
     addTestData() {
       let store = this.get('store');
       let adapter = store.adapterFor('application');
+      this.get('appState').loading();
 
-      return adapter.callFunction('AddTestData').then(() => {
-        let asd = 100;
+      return adapter.callFunction('AddTestData')
+      .finally(() => {
+        this.get('appState').reset();
       });
     }
   }
