@@ -12,10 +12,10 @@ namespace IIS.SampleForSuperset
 {
     using System;
     using System.Xml;
-
-
+    
+    
     // *** Start programmer edit section *** (Using statements)
-    using ICSSoft.STORMNET;
+
     // *** End programmer edit section *** (Using statements)
 
 
@@ -27,19 +27,19 @@ namespace IIS.SampleForSuperset
     // *** End programmer edit section *** (CarType CustomAttributes)
     public enum CarType
     {
-
+        
         // *** Start programmer edit section *** (CarType.Coupe CustomAttributes)
-        [Caption("Coupe")]
+
         // *** End programmer edit section *** (CarType.Coupe CustomAttributes)
         Coupe,
-
+        
         // *** Start programmer edit section *** (CarType.Sedan CustomAttributes)
-        [Caption("Sedan")]
+
         // *** End programmer edit section *** (CarType.Sedan CustomAttributes)
         Sedan,
-
+        
         // *** Start programmer edit section *** (CarType.Crossover CustomAttributes)
-        [Caption("Crossover")]
+
         // *** End programmer edit section *** (CarType.Crossover CustomAttributes)
         Crossover,
     }

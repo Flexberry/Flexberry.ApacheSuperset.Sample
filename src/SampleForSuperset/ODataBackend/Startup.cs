@@ -5,6 +5,8 @@
     using ICSSoft.Services;
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Business;
+    using ICSSoft.STORMNET.Business.Audit;
+    using ICSSoft.STORMNET.Business.Audit.Objects;
     using ICSSoft.STORMNET.Security;
     using IIS.Caseberry.Logging.Objects;
     using Microsoft.AspNet.OData.Extensions;
@@ -12,6 +14,8 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using NewPlatform.Flexberry.AuditBigData;
+    using NewPlatform.Flexberry.AuditBigData.Serialization;
     using NewPlatform.Flexberry.ORM.ODataService.Extensions;
     using NewPlatform.Flexberry.ORM.ODataService.Files;
     using NewPlatform.Flexberry.ORM.ODataService.Model;
@@ -133,6 +137,29 @@
 
             RegisterDataObjectFileAccessor(container);
             RegisterORM(container);
+
+            // Регистрируем DataService аудита.
+            string auditConnectionString = Configuration.GetConnectionString("AuditConnString");
+            IDataService auditDataService = new NewPlatform.Flexberry.ORM.ClickHouseDataService()
+            {
+                CustomizationString = auditConnectionString
+            };
+
+            container.RegisterInstance<IDataService>("auditDataService", auditDataService, InstanceLifetime.Singleton);
+
+            // Инициализируем сервис аудита.
+            var auditAppSetting = new AuditAppSetting
+            {
+                AppName = "Test",
+                AuditEnabled = true,
+            };
+
+            ILegacyAuditSerializer auditSerializer = new JsonLegacyAuditSerializer();
+            ILegacyAuditConverter auditConverter = new LegacyAuditConverter<JsonFieldAuditData>();
+            IAudit audit = new LegacyAuditManager(container.Resolve<IDataService>("auditDataService"), auditConverter, auditSerializer);
+            IAuditService auditService = new AuditService();
+
+            AuditService.InitAuditService(auditAppSetting, audit, auditService);
         }
 
         /// <summary>

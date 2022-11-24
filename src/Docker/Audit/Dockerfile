@@ -5,4 +5,4 @@ COPY users.xml /etc/clickhouse-server/users.xml
 COPY CreateAuditTables.sql /var/clickhouse/schema/CreateAuditTables.sql
 
 #После запускаконтейнера надо в него зайти и выполнить эту команду вручную, т.к пока через докер не выходит создать таблицы
-#CMD clickhouse-client --host clickhouse-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/CreateAuditTables.sql
+#CMD clickhouse-client --host audit-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/CreateAuditTables.sql

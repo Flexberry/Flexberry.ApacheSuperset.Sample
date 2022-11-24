@@ -1,10 +1,18 @@
-﻿
+
 
 
 
 CREATE TABLE [SparePart] (
 
 	 [primaryKey] UNIQUEIDENTIFIER  NOT NULL,
+
+	 [CreateTime] DATETIME  NULL,
+
+	 [Creator] VARCHAR(255)  NULL,
+
+	 [Editor] VARCHAR(255)  NULL,
+
+	 [EditTime] DATETIME  NULL,
 
 	 [Name] VARCHAR(255)  NULL,
 
@@ -19,15 +27,6 @@ CREATE TABLE [SparePart] (
 	 PRIMARY KEY ([primaryKey]))
 
 
-CREATE TABLE [Brand] (
-
-	 [primaryKey] UNIQUEIDENTIFIER  NOT NULL,
-
-	 [Name] VARCHAR(255)  NULL,
-
-	 PRIMARY KEY ([primaryKey]))
-
-
 CREATE TABLE [Car] (
 
 	 [primaryKey] UNIQUEIDENTIFIER  NOT NULL,
@@ -38,7 +37,32 @@ CREATE TABLE [Car] (
 
 	 [CarNumber] VARCHAR(255)  NOT NULL,
 
+	 [CreateTime] DATETIME  NULL,
+
+	 [Creator] VARCHAR(255)  NULL,
+
+	 [Editor] VARCHAR(255)  NULL,
+
+	 [EditTime] DATETIME  NULL,
+
 	 [Brand_m0] UNIQUEIDENTIFIER  NOT NULL,
+
+	 PRIMARY KEY ([primaryKey]))
+
+
+CREATE TABLE [Brand] (
+
+	 [primaryKey] UNIQUEIDENTIFIER  NOT NULL,
+
+	 [CreateTime] DATETIME  NULL,
+
+	 [Creator] VARCHAR(255)  NULL,
+
+	 [Editor] VARCHAR(255)  NULL,
+
+	 [EditTime] DATETIME  NULL,
+
+	 [Name] VARCHAR(255)  NULL,
 
 	 PRIMARY KEY ([primaryKey]))
 
@@ -46,6 +70,14 @@ CREATE TABLE [Car] (
 CREATE TABLE [ProducingCountry] (
 
 	 [primaryKey] UNIQUEIDENTIFIER  NOT NULL,
+
+	 [CreateTime] DATETIME  NULL,
+
+	 [Creator] VARCHAR(255)  NULL,
+
+	 [Editor] VARCHAR(255)  NULL,
+
+	 [EditTime] DATETIME  NULL,
 
 	 [Name] VARCHAR(255)  NULL,
 
@@ -229,7 +261,3 @@ CREATE TABLE [ApplicationLog] (
 	 [FormattedMessage] varchar(max)  NULL,
 
 	 PRIMARY KEY ([primaryKey]))
-
-
-
-

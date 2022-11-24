@@ -1,6 +1,6 @@
 FROM node:10 as ember_app
 
-COPY /newSrc/ember-app /ember-app
+COPY /src/ember-app /ember-app
 
 WORKDIR /ember-app
 
@@ -20,7 +20,7 @@ RUN \
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 as backend
 
-COPY /newSrc/SampleForSuperset /SampleForSuperset
+COPY /src/SampleForSuperset /SampleForSuperset
 
 WORKDIR /SampleForSuperset
 

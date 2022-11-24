@@ -37,14 +37,14 @@
     "Storage": {
       "Mssql": {
         "DiffSql": false,
-        "FullSql": false,
+        "FullSql": true,
         "Security": false,
         "AdminUser": false,
         "ConnectionString": null
       },
       "PostgreSql": {
         "DiffSql": false,
-        "FullSql": false,
+        "FullSql": true,
         "Security": false,
         "AdminUser": false,
         "ConnectionString": null
