@@ -25,8 +25,9 @@ COPY /src/SampleForSuperset /SampleForSuperset
 WORKDIR /SampleForSuperset
 
 RUN \
+ export DOTNET_ENVIRONMENT=Testexport DOTNET_ENVIRONMENT=Docker;\
  dotnet restore SampleForSuperset.sln;\
- dotnet build SampleForSuperset.sln -c Release;\
+ dotnet build SampleForSuperset.sln -c Debug;\
  dotnet publish ODataBackend/SampleForSuperset.ODataBackend.csproj -c Release -o out -f netcoreapp3.1
 
 FROM mcr.microsoft.com/dotnet/aspnet:3.1

@@ -14,6 +14,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using NewPlatform.Flexberry.AuditBigData;
     using NewPlatform.Flexberry.AuditBigData.Serialization;
     using NewPlatform.Flexberry.ORM.ODataService.Extensions;
@@ -71,6 +72,18 @@
                 .AddHealthChecks()
                 .AddNpgSql(connStr);
         }
+
+        public void ConfigureHost(IHostBuilder hostBuilder) =>
+            hostBuilder
+                .ConfigureHostConfiguration(builder => { builder.AddEnvironmentVariables("DOTNET_ENVIRONMENT"); })
+                .ConfigureAppConfiguration((context, builder) =>
+                {
+                    var environmentVariable = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+                    string appsettingsFileName = environmentVariable == "Docker" ?
+                        "appsettings.Docker.json" :
+                        "appsettings.json";
+                    builder.AddJsonFile(appsettingsFileName, optional: false);
+                });
 
         /// <summary>
         /// Configurate the HTTP request pipeline.
