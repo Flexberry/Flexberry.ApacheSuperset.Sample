@@ -7,6 +7,11 @@ services:
       - app-postgres-db:app-postgres-db
     ports:
       - 80:80
+    environment:
+      - UploadUrl=Uploads
+      - BackendRoot=https://localhost
+      - DefConnStr=SERVER=app-postgres-db;User ID=flexberryuser;Password=jhv;Port=5432;database=appdb;
+      - AuditConnString=Compress=True;CheckCompressedHash=True;Compressor=lz4;Host=audit-db;Port=9000;Database=default;User=default;Password=P@ssw0rd;
 
   app-postgres-db:
     image: sampleforsuperset/postgre-sql

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using ICSSoft.Services;
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Business;
@@ -14,7 +15,6 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using NewPlatform.Flexberry.AuditBigData;
     using NewPlatform.Flexberry.AuditBigData.Serialization;
     using NewPlatform.Flexberry.ORM.ODataService.Extensions;
@@ -73,18 +73,6 @@
                 .AddNpgSql(connStr);
         }
 
-        public void ConfigureHost(IHostBuilder hostBuilder) =>
-            hostBuilder
-                .ConfigureHostConfiguration(builder => { builder.AddEnvironmentVariables("DOTNET_ENVIRONMENT"); })
-                .ConfigureAppConfiguration((context, builder) =>
-                {
-                    var environmentVariable = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
-                    string appsettingsFileName = environmentVariable == "Docker" ?
-                        "appsettings.Docker.json" :
-                        "appsettings.json";
-                    builder.AddJsonFile(appsettingsFileName, optional: false);
-                });
-
         /// <summary>
         /// Configurate the HTTP request pipeline.
         /// </summary>
@@ -125,6 +113,8 @@
 
                 var token = builder.MapDataObjectRoute(modelBuilder);
                 token.Functions.Register(new Func<bool>(AddTestData));
+
+                token.Events.CallbackAfterInternalServerError = AfterInternalError;
             });
         }
 
@@ -152,7 +142,7 @@
             RegisterORM(container);
 
             // Регистрируем DataService аудита.
-            string auditConnectionString = Configuration.GetConnectionString("AuditConnString");
+            string auditConnectionString = Configuration["AuditConnString"]; //Configuration.GetConnectionString("AuditConnString");
             IDataService auditDataService = new NewPlatform.Flexberry.ORM.ClickHouseDataService()
             {
                 CustomizationString = auditConnectionString
@@ -216,6 +206,18 @@
                 Inject.Property(nameof(PostgresDataService.CustomizationString), connStr));
         }
 
+        /// <summary>
+        /// Метод, вызываемый после возникновения исключения.
+        /// </summary>
+        /// <param name="ex">Исключение, которое возникло внутри ODataService.</param>
+        /// <param name="code">Возвращаемый код HTTP. По-умолчанияю 500.</param>
+        /// <returns>Исключение, которое будет отправлено клиенту.</returns>
+        public static Exception AfterInternalError(Exception ex, ref HttpStatusCode code)
+        {
+            var environmentVariable = Environment.GetEnvironmentVariables();
+            return ex;
+        }
+
         private bool AddTestData()
         {
             IUnityContainer unityContainer = UnityFactory.GetContainer();
@@ -258,8 +260,10 @@
                 string monthInt = rnd.Next(1, 12).ToString();
                 string month = monthInt.Length == 1 ? $"0{monthInt}" : monthInt;
                 int countDay = month == "02" ? 28 : 30;
-                string dateStr = $"{rnd.Next(01, countDay)}.{month}.{rnd.Next(1980, 2022)}";
-                DateTime carDate = DateTime.Parse(dateStr);
+                string dayInt = rnd.Next(01, countDay).ToString();
+                string days = dayInt.Length == 1 ? $"0{dayInt}" : dayInt;
+                string dateStr = $"{days}.{month}.{rnd.Next(1980, 2022)}";
+                DateTime carDate = DateTime.ParseExact(dateStr, "dd.MM.yyyy", null);
 
                 Car car = new Car { CarNumber = $"CarNumber {number}", CarBody = type, Brand = brandList[numberBrand], CarDate = carDate };
                 carList.Add(car);
