@@ -1,16 +1,11 @@
 # Flexberry.SampleForSuperset
-Репозиторий создан с помощью Flexberry Designer (https://designer.flexberry.net)
 
-## Развернутое приложение на GitHub Pages
+## Необходимые для запуска примера технологии
+Для запуска примера потребуется:
+1. [Docker](https://docs.docker.com/desktop/install/windows-install/)
+2. [VScode](https://code.visualstudio.com/download) с [плагином для docker-а](https://code.visualstudio.com/docs/containers/overview)
 
-Демо-приложение с БД IndexedDb (в браузере):
-https://flexberry-app-sandbox.github.io/Flexberry.SampleForSuperset/
-
-## Запуск приложения в Docker
-
-Для запуска приложения с БД требуется [Docker](https://docker.com).
-
-Последовательность действий:
+## Последовательность действий для запуска
 
 1. Собрать Docker-образы
 ```
@@ -22,14 +17,30 @@ https://flexberry-app-sandbox.github.io/Flexberry.SampleForSuperset/
 \src\Docker> .\start.cmd
 ```
 
-Приложение будет доступно по адресу http://localhost
+3. Открыть VScode перейти в плагин для Docker-а
+
+4. Нажать `Attach to shell` и выполнить кооманду для создания таблиц аудита
+```
+clickhouse-client --host audit-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/CreateAuditTables.sql
+```
+
+Теперь все запущено
+
+http://localhost - web приложение
+http://localhost:4200/ - superset (логин: admin@admin.com пароль: postgres123)
+http://localhost:5050/ - PG Admin (логин: postgres@pg.com пароль: xxx)
+http://localhost:5432/ - postgres бд приложени (логин: flexberryuser пароль: jhv)
+http://localhost:8123/ - clickhouse бд аудита (логин: default пароль: P@ssw0rd)
 
 3. Остановить выполнение Docker-образов
 ```
 \src\Docker> .\stop.cmd
 ```
 
-## Ссылки на документацию
+## Работа с superset
 
-Подробнее о сгенерированном фронтенде: https://flexberry.github.io/ru/ef3_landing_page.html  
-Подробнее о сгенерированном бекенде: https://flexberry.github.io/ru/fo_orm-odata-service.html
+1. Создать тетовые данные (можно в web приложении нажать кнопку "Добавить тестовые данные" создает 60000 тестовых данных ps данные создается долго тк на кадрую запись пишется так же и аудит)
+
+2. Зайти в superset и подключить его к БД приложения
+
+3. 

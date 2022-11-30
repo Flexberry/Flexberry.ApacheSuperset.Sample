@@ -142,7 +142,7 @@
             RegisterORM(container);
 
             // Регистрируем DataService аудита.
-            string auditConnectionString = Configuration["AuditConnString"]; //Configuration.GetConnectionString("AuditConnString");
+            string auditConnectionString = Configuration["AuditConnString"];
             IDataService auditDataService = new NewPlatform.Flexberry.ORM.ClickHouseDataService()
             {
                 CustomizationString = auditConnectionString

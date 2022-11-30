@@ -12,6 +12,8 @@ services:
       - BackendRoot=https://localhost
       - DefConnStr=SERVER=app-postgres-db;User ID=flexberryuser;Password=jhv;Port=5432;database=appdb;
       - AuditConnString=Compress=True;CheckCompressedHash=True;Compressor=lz4;Host=audit-db;Port=9000;Database=default;User=default;Password=P@ssw0rd;
+    networks:
+      - pg-net
 
   app-postgres-db:
     image: sampleforsuperset/postgre-sql
@@ -26,6 +28,8 @@ services:
     image: sampleforsuperset/superset
     ports:
       - 4200:8088
+    networks:
+      - pg-net
 
   pgadmin:
     image: sampleforsuperset/pgadmin4
@@ -49,6 +53,8 @@ services:
     ports:
       - 8123:8123
       - 9000:9000
+    networks:
+      - pg-net
 
 volumes:
   DB:
