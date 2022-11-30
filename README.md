@@ -60,3 +60,18 @@ http://localhost:8123/ - clickhouse бд аудита (логин: default па�
 5. Создать dashboard
 
 ![image](https://user-images.githubusercontent.com/18547316/204764861-2a0518d7-789d-4ad7-ab8d-32670584b29d.png)
+
+
+## Экспресс пример
+
+Для быстрого примера можно импортировать готовый dashboard:
+
+1. Перейти на dashboards и нажать кнопку испорта
+
+![image](https://user-images.githubusercontent.com/18547316/204788084-f8412cc1-275a-40ad-844a-977100e9875e.png)
+
+2. Выбрать файл dashboard_export.zip из корня репозитория
+
+3. Ввести пароли
+
+![image](https://user-images.githubusercontent.com/18547316/204788974-cdbcfc61-2119-4a6d-bb37-4297745d2951.png)
