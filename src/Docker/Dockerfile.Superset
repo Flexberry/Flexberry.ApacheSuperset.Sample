@@ -8,4 +8,5 @@ RUN \
       --email admin@admin.com \
       --password postgres123; \
   superset db upgrade; \
+  pip install clickhouse-connect; \
   superset init;
