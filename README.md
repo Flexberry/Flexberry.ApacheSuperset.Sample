@@ -43,4 +43,20 @@ http://localhost:8123/ - clickhouse бд аудита (логин: default па�
 
 2. Зайти в superset и подключить его к БД приложения
 
-3. 
+![image](https://user-images.githubusercontent.com/18547316/204755467-03033dc4-02fe-4a00-8835-05e338a2b8a7.png)
+
+![image](https://user-images.githubusercontent.com/18547316/204755908-91ec46cd-22c6-4743-96a4-952eb3376544.png)
+
+3. Создать datasets
+
+![image](https://user-images.githubusercontent.com/18547316/204756863-7fafae65-a5a1-4741-8cb5-804afea27f06.png)
+
+![image](https://user-images.githubusercontent.com/18547316/204756994-d96761a7-4be7-43ea-b67e-ac190655b441.png)
+
+4. Создать нужные сhart
+
+![image](https://user-images.githubusercontent.com/18547316/204761834-703e1988-8079-4a23-a960-d235e37c6a86.png)
+
+5. Создать dashboard
+
+![image](https://user-images.githubusercontent.com/18547316/204764861-2a0518d7-789d-4ad7-ab8d-32670584b29d.png)
