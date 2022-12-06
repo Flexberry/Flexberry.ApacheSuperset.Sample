@@ -4,14 +4,14 @@
   "JsonMetadataPath": null,
   "OnlineCrpUrl": null,
   "OneShotToken": null,
-  "GenPath": "newSrc",
+  "GenPath": "src",
   "BeforeGenScriptPath": null,
   "AfterGenScriptPath": null,
   "GenerationItems": {
     "Validate": false,
     "Frontend": {
       "EmberJs": {
-        "EmberApp": false,
+        "EmberApp": true,
         "EmberAddon": false,
         "Build": false,
         "GitClone": false,
@@ -43,7 +43,7 @@
         "ConnectionString": null
       },
       "PostgreSql": {
-        "DiffSql": false,
+        "DiffSql": true,
         "FullSql": false,
         "Security": false,
         "AdminUser": false,
