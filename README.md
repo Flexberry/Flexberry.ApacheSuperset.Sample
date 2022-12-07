@@ -43,8 +43,10 @@ http://localhost:8123/ - clickhouse бд аудита (логин: default па�
 
 2. Зайти в superset и подключить его к БД приложения
 
+Нажать `+` => Date => Connect database
 ![image](https://user-images.githubusercontent.com/18547316/204755467-03033dc4-02fe-4a00-8835-05e338a2b8a7.png)
 
+Ввести настройки подключения к БД
 ![image](https://user-images.githubusercontent.com/18547316/204755908-91ec46cd-22c6-4743-96a4-952eb3376544.png)
 
 3. Создать datasets

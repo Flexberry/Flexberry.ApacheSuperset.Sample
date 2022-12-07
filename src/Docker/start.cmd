@@ -1,1 +1,1 @@
-docker-compose -p sampleforsuperset up -d
+docker-compose up -d

@@ -32,7 +32,7 @@ services:
       - pg-net
 
   pgadmin:
-    image: sampleforsuperset/pgadmin4
+    image: dpage/pgadmin4
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     ports:

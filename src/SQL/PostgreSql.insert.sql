@@ -1,7 +1,3 @@
-#!/bin/bash
-set -e
-
-psql -v ON_ERROR_STOP=1 --username "flexberryuser" --dbname "appdb" <<-EOSQL
 INSERT INTO public.brand (primaryKey, name) VALUES ('97ecca4b-7987-44a8-8373-b16f29eb1292', 'VW');
 INSERT INTO public.brand (primaryKey, name) VALUES ('20397d66-2b78-40fd-bff2-feb286f789bc', 'ВАЗ');
 INSERT INTO public.brand (primaryKey, name) VALUES ('21810a6f-ca5e-4302-9844-a1544db269d8', 'BMW');
@@ -47,5 +43,3 @@ INSERT INTO public.sparepart (primaryKey, name, quantity, used, producingcountry
 INSERT INTO public.sparepart (primaryKey, name, quantity, used, producingcountry_m0, car_m0) VALUES ('47e7abec-06cd-40aa-8a24-48d027f159f5', 'Колодки', 2, false, '7b4f2923-9e21-4d7a-9f40-676acd9cafbb', '15c31a42-0273-4efb-94b0-2ca15f1dd336');
 INSERT INTO public.sparepart (primaryKey, name, quantity, used, producingcountry_m0, car_m0) VALUES ('931a3061-3b54-4af2-a000-b97d144b4b3d', 'Руль', 1, true, '9a03d556-0144-451f-b3ba-d281b47352ac', '15c31a42-0273-4efb-94b0-2ca15f1dd336');
 INSERT INTO public.sparepart (primaryKey, name, quantity, used, producingcountry_m0, car_m0) VALUES ('5d344851-a391-4d92-aa1a-81aa3e5ff6cd', 'Дворнки', 2, false, 'dde0dc46-5306-4f3e-adec-881b0f43cf3a', '71697e45-a46f-405e-b618-e28eed58f8e4');
-
-EOSQL
