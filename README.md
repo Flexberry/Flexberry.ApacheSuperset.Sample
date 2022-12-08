@@ -29,7 +29,7 @@ clickhouse-client --host audit-db --user default --password P@ssw0rd --multiquer
 http://localhost - web приложение
 http://localhost:4200/ - superset (логин: admin@admin.com пароль: postgres123)
 http://localhost:5050/ - PG Admin (логин: postgres@pg.com пароль: xxx)
-http://localhost:5432/ - postgres бд приложени (логин: flexberryuser пароль: jhv)
+http://localhost:5432/ - postgres бд приложения (логин: flexberryuser пароль: jhv)
 http://localhost:8123/ - clickhouse бд аудита (логин: default пароль: P@ssw0rd)
 
 3. Остановить выполнение Docker-образов
