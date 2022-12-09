@@ -1,7 +1,7 @@
 import { createEnum } from 'ember-flexberry-data/utils/enum-functions';
 
 export default createEnum({
-  Coupe: '',
-  Sedan: '',
-  Crossover: ''
+  Coupe: 'Coupe',
+  Sedan: 'Sedan',
+  Crossover: 'Crossover'
 });

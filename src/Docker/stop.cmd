@@ -1,1 +1,1 @@
-docker-compose -p sampleforsuperset down
+docker-compose down

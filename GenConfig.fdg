@@ -1,8 +1,8 @@
 {
   "ProjectId": "2add43ff-2530-47f7-afc1-1727e53d7552",
-  "CrpLocalPath": null,
+  "CrpLocalPath": "model.crp",
   "JsonMetadataPath": null,
-  "OnlineCrpUrl": "https://designer.flexberry.net",
+  "OnlineCrpUrl": null,
   "OneShotToken": null,
   "GenPath": "src",
   "BeforeGenScriptPath": null,
@@ -24,8 +24,8 @@
       }
     },
     "Backend": {
-      "AspNet": true,
-      "AspNetCore": false,
+      "AspNet": false,
+      "AspNetCore": true,
       "Java": false
     },
     "Docker": {
@@ -37,14 +37,14 @@
     "Storage": {
       "Mssql": {
         "DiffSql": false,
-        "FullSql": true,
+        "FullSql": false,
         "Security": false,
         "AdminUser": false,
         "ConnectionString": null
       },
       "PostgreSql": {
-        "DiffSql": false,
-        "FullSql": true,
+        "DiffSql": true,
+        "FullSql": false,
         "Security": false,
         "AdminUser": false,
         "ConnectionString": null

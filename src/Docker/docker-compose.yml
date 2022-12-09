@@ -7,10 +7,58 @@ services:
       - app-postgres-db:app-postgres-db
     ports:
       - 80:80
+    environment:
+      - UploadUrl=Uploads
+      - BackendRoot=https://localhost
+      - DefConnStr=SERVER=app-postgres-db;User ID=flexberryuser;Password=jhv;Port=5432;database=appdb;
+      - AuditConnString=Compress=True;CheckCompressedHash=True;Compressor=lz4;Host=audit-db;Port=9000;Database=default;User=default;Password=P@ssw0rd;
+    networks:
+      - pg-net
 
   app-postgres-db:
     image: sampleforsuperset/postgre-sql
     volumes:
       - DB:/var/lib/pgsql/data/
+    ports:
+      - 5432:5432
+    networks:
+      - pg-net
+
+  superset:
+    image: sampleforsuperset/superset
+    ports:
+      - 4200:8088
+    networks:
+      - pg-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@pg.com
+      PGADMIN_DEFAULT_PASSWORD: xxx
+    depends_on:
+      - app-postgres-db
+    networks:
+      - pg-net
+
+  audit-db:
+    image: sampleforsuperset/clickhouse
+    command: gosu clickhouse:clickhouse sh -c ' while :; do /usr/bin/clickhouse-server --config-file=/etc/clickhouse-server/config.xml; sleep 1; done'
+    volumes:
+      - clickhousedb:/var/lib/clickhouse
+    ports:
+      - 8123:8123
+      - 9000:9000
+    networks:
+      - pg-net
+
 volumes:
   DB:
+  pgadmin-data:
+  clickhousedb:
+networks:
+  pg-net:
